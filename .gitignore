@@ -162,6 +162,7 @@ cython_debug/
 #.idea/
 
 # Custom
+.DS_Store
 deploy-g5k.sh
 run-g5k.sh
 results*
