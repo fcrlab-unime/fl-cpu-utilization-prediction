@@ -4,8 +4,8 @@
 This project studies the effectiveness of resolving the resorce managemengent (e.g., CPU) problem using the Federated Learning. 
 
 The application was tested on two machines:
-- MacBook Pro with chip Apple M3 Pro, 18GB of memory RAM and Sonoma 14.6.1
-- ...
+- Operating system Debian 11, 8 cores Intel(R) Xeon(R) CPU E5-2698 v4 @ 2.20GHz, 528 GiB of memory and 1 Nvidia Tesla V100 32 GiB
+- Operating system Sonoma 14.6.1, Apple M3 Pro, 18 GiB of memory
 
 ## Install Dependencies
 The only package you need in your operating system are Python3 and PIP3. The experiment was run on `Python v3.9.6` and `virtualenv==20.26.2`.
