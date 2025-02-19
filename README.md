@@ -1,4 +1,5 @@
 # CPU Utilization Forecasting with Federated Learning
+![python-3.9.6](https://img.shields.io/badge/python-3.9.6-blue)
 
 This project studies the effectiveness of resolving the resorce managemengent (e.g., CPU) problem using the Federated Learning. 
 
