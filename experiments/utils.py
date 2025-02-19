@@ -55,8 +55,9 @@ def create_tensor(data):
 
 def store_dataset_overview(title: str, ylabel: str, data: pd.core.frame.DataFrame, labels: list, filename: str):
     plt.figure(figsize=(16, 8))
-    plt.title(title)
-    plt.ylabel(ylabel)
+    # plt.title(title, fontsize=28)
+    plt.ylabel(ylabel, fontsize=28)
+    plt.xticks(fontsize=28) 
     plt.plot(data, label=labels)
-    plt.legend()
+    plt.legend(fontsize=20)
     plt.savefig(filename)
