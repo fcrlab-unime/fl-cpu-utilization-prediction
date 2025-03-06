@@ -65,10 +65,14 @@ The followin are the metrics studied and validated in the experiment:
 
 After running the experiment, the `data.json` file is created in the `results` folder. Running again the `main.py` application with the `--metrics` option will go through the JSON file to make figures of the metrics. They will be called: `azure-256-mae-test.png`, `azure-256-mse-test.png`, `azure-256-rmse-test.png` and `azure-256-r2-test.png`.
 
+The experiment creates also many PNG figure about the comparison of the actual curve with the predicted curve. The files are called `azure-RESOURCE-BATCH-STEPS-DATASET.png`, where RESOURCE is included in the tuple <`avg_cpu`, `max_cpu`, `min_cpu`>, BATCH is included in the `batch_size` list defined in the `conf.yaml` (e.g., `256batch` in this experiment), STEPS is included in the `lookbacks` list defined in the `conf.yaml` (e.g., <`2`, `6`, `12`, `24`, `48`>) and DATASET is `Xdataset`, where X is in the closed range [0,5]. The experiment reported in the paper [1] shows the prediction of all resources in the tuple <`avg_cpu`, `max_cpu`, `min_cpu`> with `2` and `6` steps. Not all datasets are reported in the paper but a subset of them for reasoning of space. The dataset are shuffled during the Federated Learning training process. This is therefore impossible knowing a priori the number of the figures to pick-up.
+
 ## Credits
 This project is the result of a joint research collaboration between three Insitute:
 - University of Messina, Italy
 - MT Atlantique, Nantes Université, Ecole Centrale Nantes, CNRS, Inria, LS2N, France
 - University of Utah, United States of America
 
-As product of the research, a paper was accepted in the <i>25th IEEE International Symposium on Cluster, Cloud, and Internet Computing (CCGrid 2025)</i> titled <i>Private Distributed Resource Management Data: Predicting CPU Utilization with Bi-LSTM and Federated Learning</i> by Lorenzo Carnevale, Daniel Balouek, Serena Sebbio, Manish Parashar and Massimo Villari.
+## Bibliography
+
+1. <i>Private Distributed Resource Management Data: Predicting CPU Utilization with Bi-LSTM and Federated Learning</i> by Lorenzo Carnevale, Daniel Balouek, Serena Sebbio, Manish Parashar and Massimo Villari. <i>25th IEEE International Symposium on Cluster, Cloud, and Internet Computing (CCGrid 2025)</i> - accepted paper
