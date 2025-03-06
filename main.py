@@ -9,14 +9,13 @@ import json
 import yaml
 import logging
 import argparse
-import flwr as fl
 from experiments.experiment_lstm import ExperimentFLLSTM
 
-def setup_logging() -> None:
+def setup_logging(logdir_name: str) -> None:
     format = "%(asctime)s %(filename)s:%(lineno)d %(levelname)s - %(message)s"
     datefmt = "%d/%m/%Y %H:%M:%S"
     level = logging.INFO
-    filename = 'experiments.log'
+    filename = '%s/experiments.log' % logdir_name
     logging.basicConfig(filename=filename, format=format, level=level, datefmt=datefmt)
 
 def main():
@@ -27,7 +26,10 @@ def main():
         epilog = epilog
     )
 
-    setup_logging()
+    logdir_name = 'logs'
+    if not os.path.exists(logdir_name):
+        os.makedirs(logdir_name)
+    setup_logging(logdir_name)
 
     parser.add_argument('-c', '--config',
                         dest='config',
@@ -49,7 +51,8 @@ def main():
     with open(options.config) as f:
         config = yaml.safe_load(f)
 
-    results_dir = 'results-%s-%s/' % (config['experiment'], config['dataset_name'])
+    # results_dir = 'results-%s-%s/' % (config['experiment'], config['dataset_name'])
+    results_dir = 'results/'
     if not os.path.exists(results_dir):
         os.makedirs(results_dir)
 

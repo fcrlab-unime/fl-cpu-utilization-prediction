@@ -1,21 +1,19 @@
 # CPU Utilization Forecasting with Federated Learning
-![python-3.9.6](https://img.shields.io/badge/python-3.9.6-blue)
+![python-3.10.16](https://img.shields.io/badge/python-3.9.6-blue)
 
-This project studies the effectiveness of resolving the resorce managemengent (e.g., CPU) problem using the Federated Learning. 
-
-The application was tested on two machines:
-- Operating system Debian 11, 8 cores Intel(R) Xeon(R) CPU E5-2698 v4 @ 2.20GHz, 528 GiB of memory and 1 Nvidia Tesla V100 32 GiB
-- Operating system Sonoma 14.6.1, Apple M3 Pro, 18 GiB of memory
+This project studies the effectiveness of resolving the resorce managemengent problem (e.g., CPU utilization prediction) using the Federated Learning.
 
 ## Install Dependencies
-The only package you need in your operating system are Python3 and PIP3. The experiment was run on `Python v3.9.6` and `virtualenv==20.26.2`.
+Install Docker dependencies from the [official website](https://docs.docker.com/engine/install/). Run This `docker --version` on a shell to verify your Docker version. This repository was tested with the following Docker version: <i>Docker version 27.5.1, build 9f9e405</i>.
 
-## Getting Started
+The only packages you need in your operating system are Python3 and PIP3. The experiment was run on `Python v3.10.16`, `pip v25.0.1` and `virtualenv==20.29.2`.
+
+## How to build
 Install all Python3 dependencies with the `requirements.txt` file as follow:
 ```bash
-python3 -m virtualenv -p python3 venv
+python3.10 -m virtualenv -p python3.10 venv
 source venv/bin/activate
-pip3 install -r requirements.txt
+pip install -r requirements.txt
 ```
 
 Execute the application as follow:
@@ -27,7 +25,7 @@ The `Flower` simulator will run a number of clients and a server with the parame
 
 In order to make figures out of the `data.json` file, run the following within the virtual environment:
 ```bash
-python main.py --config conf.yaml --metrics results-EXPERIMENT_NAME-DATASET_NAME
+python main.py --config conf.yaml --metrics results
 ```
 
 As result, for each batch, figures about the metrics validated in the test dataset are created, along with a LaTeX table with the latest values for each metric. Moreover, for each batch, for each input window size and for each dataset, a figure that compares the actual values and the predicted values of the minimum, average and maximum CPU utilization are created.
