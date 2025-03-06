@@ -69,9 +69,9 @@ The experiment creates also many PNG figure about the comparison of the actual c
 
 ## Credits
 This project is the result of a joint research collaboration between three Insitute:
-- University of Messina, Italy
-- MT Atlantique, Nantes Université, Ecole Centrale Nantes, CNRS, Inria, LS2N, France
-- University of Utah, United States of America
+- University of Messina, Italy.
+- IMT Atlantique, Nantes Université, Ecole Centrale Nantes, CNRS, Inria, LS2N, France.
+- University of Utah, United States of America.
 
 ## Bibliography
 
