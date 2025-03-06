@@ -155,13 +155,14 @@ class SequenceLearner():
                 targets_train,
                 evaluate
             )
+
             if evaluate:
                 epoch_mse_train, epoch_rmse_train, epoch_time, epoch_mse_test, epoch_rmse_test, epoch_mae_test = metrics
             else:
                 epoch_mse_train, epoch_rmse_train, epoch_time = metrics
 
             if epoch % 10 == 0:
-                logging.info("Epoch: %d, train RMSE: %1.5f in %.2f s" % (epoch, epoch_rmse_train, epoch_time))
+                logging.info("Epoch: %d/%d, train RMSE: %1.5f in %.2f s" % (epoch, self.__num_epochs, epoch_rmse_train, epoch_time))
             
             self.__history['train']['mse'].append(epoch_mse_train)
             self.__history['train']['rmse'].append(epoch_rmse_train)
