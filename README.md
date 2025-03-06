@@ -1,14 +1,12 @@
 # CPU Utilization Forecasting with Federated Learning
-![python-3.10.16](https://img.shields.io/badge/python-3.9.6-blue)
+![python-3.10.16](https://img.shields.io/badge/python-3.10.16-blue)
 
-This project studies the effectiveness of resolving the resorce managemengent problem (e.g., CPU utilization prediction) using the Federated Learning.
+This project studies the effectiveness of resolving the prediction of computational resources by using the Federated Learning. Specifically, a Bi-LSTM in Federated Learning is trained over the CPU utilization of Microsoft Azure virtual machines. The results show a promising quality of the model in terms of generalization.
 
 ## Install Dependencies
-Install Docker dependencies from the [official website](https://docs.docker.com/engine/install/). Run This `docker --version` on a shell to verify your Docker version. This repository was tested with the following Docker version: <i>Docker version 27.5.1, build 9f9e405</i>.
+The only packages you need in your operating system are Python3 and PIP3. The experiment was run on `Python v3.10.16`, `pip v25.0.1` and `virtualenv==20.29.2`. For the installation of these dependencies, please refer to the official documentation.
 
-The only packages you need in your operating system are Python3 and PIP3. The experiment was run on `Python v3.10.16`, `pip v25.0.1` and `virtualenv==20.29.2`.
-
-## How to build
+## Getting Started
 Install all Python3 dependencies with the `requirements.txt` file as follow:
 ```bash
 python3.10 -m virtualenv -p python3.10 venv
@@ -21,7 +19,7 @@ Execute the application as follow:
 python main.py --config conf.yaml
 ```
 
-The `Flower` simulator will run a number of clients and a server with the parameters defined in the configuration file called `conf.yaml`. During the execution, a folder called `results-EXPERIMENT_NAME-DATASET_NAME` is made, according to the `experiment` and `dataset_name` variables defined in the configuration file. The folder contains the overview of each and every dataset, that is the plot of minimum, average and maximum CPU utilization for the selected VMs. Moreover, the folder contains the file `data.json` with the numeric results of the experiment. Indeed, for each batch and for each input window size, test and predict numeric values are collected. The test includes results for the MSE, RMSE, MAE and R-squared metrics. The predict include the actual values and the predicted values of the minimum, average and maximum CPU utilization.
+The `Flower` simulator will run a number of clients and a server with the parameters defined in the configuration file called `conf.yaml`. During the execution, a folder called `results` is made. The folder contains the overview of each and every dataset, that is the plot of minimum, average and maximum CPU utilization for the selected VMs. Moreover, the folder contains the file `data.json` with the numeric results of the experiment. Indeed, for each batch and for each input window size, test and predict numeric values are collected. The test includes results for the MSE, RMSE, MAE and R-squared metrics. The predict include the actual values and the predicted values of the minimum, average and maximum CPU utilization.
 
 In order to make figures out of the `data.json` file, run the following within the virtual environment:
 ```bash
@@ -33,8 +31,10 @@ As result, for each batch, figures about the metrics validated in the test datas
 ## Datasets
 The datasets are extracted from the [AzurePublicDataset](https://github.com/Azure/AzurePublicDataset) repository, a public collection of Microsoft Azure traces for the benefit of the research and academic community. Specifically, this repository uses the [AzurePublicDatasetV2](https://github.com/Azure/AzurePublicDataset/blob/master/AzurePublicDatasetV2.md), which contains a representative subset of the first-party Azure Virtual Machine (VM) workload in one geographical region. Considering the dataset is very large with more than 2.5 million of VMs involved, we extracted a sample of 7 VMs.
 
+After the running of the applications, the `results` folder will include PNG files called `datasetX-overview.png`, where X is in the closed range [0, 5].
+
 ## Configuration file
-Use the YAML configuration file to finetune the experiment. What is not considered as a parameter in the configuration file is static (e.g., the Federated Learning aggregation strategy FedAvg). The configuration file `conf.yaml` is described as follow:
+Use the YAML configuration file to finetune the experiment. What is not considered as a parameter in the configuration file is static (e.g., the Federated Learning aggregation strategy). The configuration file `conf.yaml` is described as follow:
 ```yaml
 experiment: <string> # the name of the experiment
 dataset_name: <string> # the name of the dataset
@@ -63,8 +63,12 @@ The followin are the metrics studied and validated in the experiment:
 - the Root Mean Squared Error (RMSE) measures the standard deviation between predicted values and actual values. It is useful for understanding the absolute error when the errors are squared to prevent positive and negative values from canceling each other out. It is defined as follow: $\text{RMSE} = \sqrt{MSE}$
 - the Mean Absolute Error (MAE) measures the average of the absolute errors between predicted values and actual values. It is useful for understanding the accuracy of a model's predictions: $ \text{MAE} = \frac{1}{n} \sum_{i=1}^{n} \left| y_i - \hat{y}_i \right|$
 
+After running the experiment, the `data.json` file is created in the `results` folder. Running again the `main.py` application with the `--metrics` option will go through the JSON file to make figures of the metrics. They will be called: `azure-256-mae-test.png`, `azure-256-mse-test.png`, `azure-256-rmse-test.png` and `azure-256-r2-test.png`.
+
 ## Credits
 This project is the result of a joint research collaboration between three Insitute:
 - University of Messina, Italy
 - MT Atlantique, Nantes Université, Ecole Centrale Nantes, CNRS, Inria, LS2N, France
 - University of Utah, United States of America
+
+As product of the research, a paper was accepted in the <i>25th IEEE International Symposium on Cluster, Cloud, and Internet Computing (CCGrid 2025)</i> titled <i>Private Distributed Resource Management Data: Predicting CPU Utilization with Bi-LSTM and Federated Learning</i> by Lorenzo Carnevale, Daniel Balouek, Serena Sebbio, Manish Parashar and Massimo Villari.
