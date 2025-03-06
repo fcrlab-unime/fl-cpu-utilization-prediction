@@ -166,3 +166,5 @@ cython_debug/
 deploy-g5k.sh
 run-g5k.sh
 results*
+entrypoint.sh
+Dockerfile
